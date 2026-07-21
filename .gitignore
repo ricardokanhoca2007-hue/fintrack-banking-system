@@ -1,0 +1,14 @@
+echo "# Node & Frontend" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "dist/" >> .gitignore
+echo ".env" >> .gitignore
+echo "" >> .gitignore
+echo "# Java & Backend" >> .gitignore
+echo "target/" >> .gitignore
+echo "*.class" >> .gitignore
+echo ".mvn/" >> .gitignore
+echo "" >> .gitignore
+echo "# IDEs & OS" >> .gitignore
+echo ".idea/" >> .gitignore
+echo ".vscode/" >> .gitignore
+echo "*.DS_Store" >> .gitignore
