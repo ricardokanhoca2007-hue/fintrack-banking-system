@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: fintrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: fintrack
+      POSTGRES_USER: fintrack
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD no ambiente}
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - fintrack-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fintrack -d fintrack"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  fintrack-postgres-data:

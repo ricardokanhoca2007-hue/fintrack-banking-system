@@ -1,0 +1,47 @@
+﻿# Secrets and environment variables
+.env
+.env.*
+!.env.example
+**/application-local.yml
+**/application-local.yaml
+
+# Java / Maven
+**/target/
+*.class
+
+# Node.js / frontend
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/build/
+**/.output/
+**/.tanstack/
+**/.nitro/
+**/.vinxi/
+**/.wrangler/
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+*.tmp
+*.temp
+
+# Installers and archives
+*.msi
+*.exe
+*.zip
+
+# Operating systems and IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local tooling and generated metadata
+/.github/
+/.vscode/
+
+FinTrack Frontend Prototype/.github/
+
+FinTrack Frontend Prototype/.github/
