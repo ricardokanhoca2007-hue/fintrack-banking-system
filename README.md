@@ -1,548 +1,223 @@
-\# FinTrack — Banking \& Personal Finance Simulator
+﻿# FinTrack — Banking & Personal Finance Simulator
 
+A full-stack fintech project designed to demonstrate software engineering skills through account management, financial data handling, REST API development, and a modern web interface.
 
+> **Project status:** Work in progress. This is an educational banking simulator, not a real banking service.
 
-A full-stack personal finance application built to explore modern web development, REST API design, relational data persistence, and financial dashboard interfaces.
+## Overview
 
+FinTrack is a portfolio project focused on building a maintainable full-stack application using Java, Spring Boot, PostgreSQL, React, and TypeScript.
 
+The project is being developed to demonstrate backend engineering, database design, API development, frontend development, and containerized infrastructure.
 
-\*\*FinTrack\*\* is a portfolio project developed with React and TypeScript on the frontend, Java and Spring Boot on the backend, and PostgreSQL for persistent data storage.
+## Technology Stack
 
-
-
-> \\\\\\\*\\\\\\\*Project status:\\\\\\\*\\\\\\\* In development. This is an educational simulator using demonstration data, not a real banking service.
-
-
-
-\## Overview
-
-
-
-FinTrack aims to provide a clear interface for exploring personal finance workflows, including account balances, transaction history, budgeting, savings goals, and financial insights.
-
-
-
-The project combines a modern frontend with a backend API and a relational database, with an emphasis on maintainable code, clear separation of concerns, and reproducible local development.
-
-
-
-\## Key Features
-
-
-
-\### Frontend
-
-\- Interactive financial dashboard and account views.
-
-\- Transaction history interface and movement dialogs.
-
-\- Budget, savings goal, and card-management interfaces.
-
-\- Data visualisation and financial summaries.
-
-\- Responsive application layout and reusable UI components.
-
-
-
-\*The degree of backend integration and persistence varies by feature and is still being validated.\*
-
-
-
-\### Backend
-
-\- REST API built with Java and Spring Boot.
-
-\- Account data exposed through a versioned API.
-
-\- PostgreSQL integration using Spring Data JPA.
-
-\- Database schema management and demonstration data through Flyway migrations.
-
-\- Application health monitoring through Spring Boot Actuator.
-
-
-
-\### Database and Development
-
-\- PostgreSQL running in Docker.
-
-\- Docker Compose configuration for the database.
-
-\- Environment-variable-based database configuration.
-
-\- Git version control and a modular project structure.
-
-
-
-\## Technology Stack
-
-
-
-| Area | Technologies |
-
+| Layer | Technologies |
 |---|---|
-
 | Frontend | React, TypeScript, Vite |
-
-| Styling and UI | Tailwind CSS, reusable UI components |
-
-| Backend | Java 21, Spring Boot |
-
-| API | REST, JSON |
-
-| Persistence | Spring Data JPA, Hibernate |
-
+| Backend | Java 21, Spring Boot, Maven |
 | Database | PostgreSQL |
-
 | Database migrations | Flyway |
+| API monitoring | Spring Boot Actuator |
+| Infrastructure | Docker, Docker Compose |
+| Version control | Git, GitHub |
 
-| Build tools | npm, Maven |
-
-| Local infrastructure | Docker, Docker Compose |
-
-| Monitoring | Spring Boot Actuator |
-
-
-
-\## Architecture
-
-
+## Architecture
 
 ```text
-
-┌─────────────────────────────────┐
-
-│       React + TypeScript        │
-
-│        Vite development         │
-
-└────────────────┬────────────────┘
-
-\\\&#x20;                │ HTTP / JSON
-
-\\\&#x20;                ▼
-
-┌─────────────────────────────────┐
-
-│      Spring Boot REST API       │
-
-│      Java 21 · Maven · JPA      │
-
-└────────────────┬────────────────┘
-
-\\\&#x20;                │ SQL
-
-\\\&#x20;                ▼
-
-┌─────────────────────────────────┐
-
-│           PostgreSQL            │
-
-│      Flyway-managed schema      │
-
-└─────────────────────────────────┘
-
+User
+ |
+ v
+React + TypeScript Frontend
+ |
+ | HTTP / REST
+ v
+Spring Boot Backend
+ |
+ v
+PostgreSQL Database
+ ^
+ |
+Flyway Database Migrations
 ```
 
+The frontend development server is configured to proxy `/api` and `/actuator` requests to the backend.
 
-
-The frontend and backend run as separate applications during development. Docker Compose provides the PostgreSQL service.
-
-
-
-\## Project Structure
-
-
+## Project Structure
 
 ```text
-
-FinTrack\\\\\\\_Project/
-
-├── FinTrack Frontend Prototype/
-
-│   ├── public/
-
-│   ├── src/
-
-│   │   ├── components/
-
-│   │   ├── data/
-
-│   │   ├── hooks/
-
-│   │   ├── lib/
-
-│   │   ├── routes/
-
-│   │   └── store/
-
-│   ├── package.json
-
-│   └── vite.config.ts
-
+FinTrack_Project/
 ├── backend/
-
 │   ├── src/
-
-│   │   ├── main/
-
-│   │   │   ├── java/
-
-│   │   │   └── resources/
-
-│   │   │       └── db/migration/
-
-│   │   └── test/
-
-│   └── pom.xml
-
+│   ├── pom.xml
+│   └── README.md
 ├── docker/
-
 │   └── docker-compose.yml
-
+├── FinTrack Frontend Prototype/
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── README.md
+├── .gitignore
 └── README.md
-
 ```
 
+## Prerequisites
 
+Install the following tools before running the project:
 
-\## Getting Started
+- Git
+- Java Development Kit (JDK) 21
+- Apache Maven 3.9 or compatible
+- Node.js and npm
+- Docker Desktop with Docker Compose
 
+Check your installations:
 
-
-Follow these instructions to run the project locally on a new machine.
-
-
-
-\### Prerequisites
-
-
-
-Install the following tools:
-
-
-
-\- \[Git](https://git-scm.com/downloads)
-
-\- \[Java JDK 21](https://adoptium.net/)
-
-\- \[Apache Maven 3.9+](https://maven.apache.org/download.cgi)
-
-\- \[Node.js and npm](https://nodejs.org/)
-
-\- \[Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
-
-
-Verify the installations:
-
-
-
-```bash
-
+```powershell
 git --version
-
 java -version
-
 mvn -version
-
 node --version
-
 npm --version
-
 docker --version
-
 docker compose version
-
 ```
 
+## Getting Started
 
+### 1. Clone the repository
 
-\### 1. Clone the repository
-
-
-
-```bash
-
+```powershell
 git clone https://github.com/ricardokanhoca2007-hue/fintrack-banking-system.git
-
-cd fintrack-banking-system
-
+Set-Location fintrack-banking-system
 ```
 
+To access the initial development branch:
 
-
-The current development version is available on the `feature/fintrack-initial-version` branch:
-
-
-
-```bash
-
+```powershell
 git switch feature/fintrack-initial-version
-
 ```
 
+### 2. Configure environment variables
 
-
-\### 2. Start PostgreSQL
-
-
-
-From the repository root, configure a local development password and start the database.
-
-
-
-\*\*PowerShell (Windows):\*\*
-
-
+Set the database password in your local PowerShell session. Use a password appropriate for your local environment and do not commit credentials.
 
 ```powershell
-
-$env:POSTGRES\\\\\\\_PASSWORD = "change-this-local-password"
-
-$env:DB\\\\\\\_PASSWORD = $env:POSTGRES\\\\\\\_PASSWORD
-
-
-
-docker compose -f docker/docker-compose.yml up -d postgres
-
+$env:POSTGRES_PASSWORD = "replace-with-your-local-password"
+$env:DB_PASSWORD = $env:POSTGRES_PASSWORD
 ```
 
+These values must match the credentials configured for PostgreSQL.
 
+### 3. Start PostgreSQL
 
-Replace the example password with a suitable local development value. The same value must be supplied to both variables for a fresh local setup.
-
-
-
-Check that the database container is running:
-
-
+From the repository root:
 
 ```powershell
-
-docker ps
-
+docker compose -f docker/docker-compose.yml up -d
 ```
 
+**Important:** These instructions assume a fresh local setup. If you already have a PostgreSQL container and persistent database volume, do not delete the volume or recreate the database blindly. Check your existing database configuration first.
 
+### 4. Run the backend
 
-The Compose configuration publishes PostgreSQL on port `5432`. Ensure that this port is available.
-
-
-
-\### 3. Start the backend
-
-
-
-Open a terminal in the repository root and configure the database password in that terminal session:
-
-
+Open a PowerShell terminal:
 
 ```powershell
-
-$env:DB\\\\\\\_PASSWORD = "change-this-local-password"
-
-Set-Location backend
-
+Set-Location .\backend
+$env:DB_PASSWORD = "your-configured-database-password"
 mvn spring-boot:run
-
 ```
 
+If Maven is not available on your PATH, use your local Maven installation or configure Maven before running the command.
 
+The backend runs on:
 
-Use the same password configured for PostgreSQL. The backend runs on port `8080`.
+```text
+http://localhost:8080
+```
 
+Check the health endpoint:
 
+```text
+http://localhost:8080/actuator/health
+```
 
-On a fresh database, Flyway applies the versioned migrations during application startup.
+Retrieve the available accounts:
 
+```text
+http://localhost:8080/api/v1/accounts
+```
 
+You can also test these endpoints with a REST client such as Postman.
 
-\### 4. Verify the API
+### 5. Run the frontend
 
-
-
-Once the backend has started, open:
-
-
-
-\- Health endpoint: `http://localhost:8080/actuator/health`
-
-\- Accounts endpoint: `http://localhost:8080/api/v1/accounts`
-
-
-
-The health endpoint should report an `UP` status when the application is healthy. The accounts endpoint returns the available demonstration accounts.
-
-
-
-\### 5. Start the frontend
-
-
-
-Open a \*\*separate terminal\*\* from the repository root:
-
-
+Open a second PowerShell terminal from the repository root:
 
 ```powershell
-
-Set-Location "FinTrack Frontend Prototype"
-
+Set-Location ".\FinTrack Frontend Prototype"
 npm install
-
 npm run dev
-
 ```
 
+Open the local URL printed by Vite in the terminal. The development server is configured to use port `8081` and proxy API requests to the backend on port `8080`.
 
+## Development and Quality
 
-Open the local URL printed by Vite in the terminal. The development server is configured to proxy API and Actuator requests to the backend on port `8080`.
+Recommended practices for this project include:
 
+- Keeping backend responsibilities separate from frontend presentation.
+- Using database migrations to manage schema changes.
+- Validating API inputs and handling errors consistently.
+- Writing automated tests for core business logic and API endpoints.
+- Keeping credentials and environment-specific configuration out of version control.
+- Documenting API endpoints and setup instructions.
 
+### Useful commands
 
-Keep the database, backend, and frontend running while using the application.
+Backend tests:
 
-
-
-\## Configuration
-
-
-
-The backend reads its database password from the `DB\\\\\\\_PASSWORD` environment variable.
-
-
-
-Do not commit real credentials, private keys, or local `.env` files. Use environment variables for local configuration and use your own development credentials.
-
-
-
-The Docker Compose configuration requires `POSTGRES\\\\\\\_PASSWORD` when creating a new database container.
-
-
-
-\*\*Important:\*\* changing the Compose password variable does not change the password of an already-initialised PostgreSQL data volume. Existing local databases must retain their matching credentials unless the database password is deliberately changed.
-
-
-
-\## Running Tests and Building
-
-
-
-\### Backend
-
-
-
-From the `backend/` directory:
-
-
-
-```bash
-
+```powershell
+Set-Location .\backend
 mvn test
-
-mvn package
-
 ```
 
+Frontend production build:
 
-
-\### Frontend
-
-
-
-From the `FinTrack Frontend Prototype/` directory:
-
-
-
-```bash
-
+```powershell
+Set-Location ".\FinTrack Frontend Prototype"
 npm run build
-
 ```
 
+Run these commands from the appropriate project directory.
 
+## Current Scope and Limitations
 
-The frontend production build should complete without errors before changes are submitted.
+FinTrack is under active development. The backend currently provides a health endpoint and account API backed by PostgreSQL, with initial database migrations and sample account data.
 
+Not all frontend features have been verified as integrated with the backend. Authentication, authorization, transaction processing, and other banking workflows should not be considered production-ready unless they are implemented and tested.
 
+## Roadmap
 
-\## Current Limitations
+- [ ] Complete and document the account management API.
+- [ ] Implement and test transaction workflows.
+- [ ] Add authentication and authorization.
+- [ ] Connect frontend features to backend endpoints.
+- [ ] Add automated backend and frontend tests.
+- [ ] Improve API documentation and error handling.
+- [ ] Strengthen configuration and security practices.
+- [ ] Improve CI/CD and containerized deployment.
 
+## Disclaimer
 
+This project is intended for educational and portfolio purposes only. It is not connected to real bank accounts, does not process real payments, and must not be used to store real financial credentials or sensitive financial data.
 
-\- FinTrack is a demonstration project, not a real banking platform.
+## Author
 
-\- The backend API currently exposes account data and health information; broader API coverage is still under development.
+**Ricardo Kanhoca**
 
-\- Frontend modules may use demonstration or client-side state where complete backend integration has not yet been implemented.
+Computer Engineering student interested in software engineering, backend development, databases, and fintech systems.
 
-\- Production-grade authentication, authorisation, transaction security, and deployment hardening are not yet claimed as complete.
-
-
-
-\## Roadmap
-
-
-
-\- \[ ] Complete backend integration for supported financial workflows.
-
-\- \[ ] Implement and test transaction persistence and account balance updates through the API.
-
-\- \[ ] Add validation and consistent API error handling.
-
-\- \[ ] Expand automated tests for controllers, services, and persistence.
-
-\- \[ ] Introduce authentication and authorisation before any production-oriented use.
-
-\- \[ ] Add automated quality checks and a CI workflow.
-
-\- \[ ] Document API contracts and add screenshots of the working application.
-
-
-
-\## Engineering Goals
-
-
-
-This project is an opportunity to practise and demonstrate:
-
-
-
-\- Full-stack application development.
-
-\- REST API design and integration.
-
-\- Relational data modelling and database migrations.
-
-\- Separation of frontend, backend, and infrastructure concerns.
-
-\- Environment-based configuration and reproducible development.
-
-\- Testing, documentation, and version control.
-
-
-
-\## Disclaimer
-
-
-
-FinTrack is for educational and portfolio demonstration purposes only. It is not connected to financial institutions, does not process real payments, and must not be used to store real banking credentials or sensitive financial information.
-
-
-
-\## Author
-
-
-
-\*\*Ricardo Kanhoca\*\*
-
-
-
-Computer Engineering student interested in software engineering, backend development, APIs, databases, and financial technology.
-
-
-
-\- GitHub: \[@ricardokanhoca2007-hue](https://github.com/ricardokanhoca2007-hue)
-
-\- Project repository: \[fintrack-banking-system](https://github.com/ricardokanhoca2007-hue/fintrack-banking-system)
-
+GitHub: [@ricardokanhoca2007-hue](https://github.com/ricardokanhoca2007-hue)
